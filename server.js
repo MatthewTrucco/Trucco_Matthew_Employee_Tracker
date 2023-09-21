@@ -184,3 +184,27 @@ function start() {
                         ),
                     },
                 ])
+                .then((answers) => {
+                    const department = res.find(
+                        (department) => department.name === answers.department
+                    );
+                    const query = "INSERT INTO roles SET ?";
+                    connection.query(
+                        query,
+                        {
+                            title: answers.title,
+                            salary: answers.salary,
+                            department_id: department,
+                        },
+                        (err, res) => {
+                            if (err) throw err;
+                            console.log(
+                                `Added role ${answers.title} with salary ${answers.salary} to the ${answers.department} department in the database!`
+                            );
+                             // restart the application
+                        start();
+                    }
+                );
+            });
+    });
+}
