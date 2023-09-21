@@ -33,3 +33,27 @@ cfonts.say('Truccos \nSQL Employee Tracker', {
 	transitionGradient: false,  
 	env: 'node'
 });
+
+
+function start() {
+    inquirer
+        .prompt({
+            type: "list",
+            name: "action",
+            message: "What would you like to do?",
+            choices: [
+                "View all departments",
+                "View all roles",
+                "View all employees",
+                "Add a department",
+                "Add a role",
+                "Add an employee",
+                "Add a Manager",
+                "Update an employee role",
+                "View Employees by Manager",
+                "View Employees by Department",
+                "Delete Departments | Roles | Employees",
+                "View the total utilized budget of a department",
+                "Exit",
+            ],
+        })
