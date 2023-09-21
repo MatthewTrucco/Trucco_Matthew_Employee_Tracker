@@ -113,3 +113,49 @@ function start() {
         });
     }
     
+    function viewAllRoles() {
+        const query = "SELECT roles.title, roles.id, departments.department_name, roles.salary from roles join departments on roles.department_id = departments.id";
+        connection.query(query, (err, res) => {
+            if (err) throw err;
+            console.table(res);
+            // restart the application
+            start();
+        });
+    }
+
+    function viewAllEmployees() {
+        const query = `
+        SELECT e.id, e.first_name, e.last_name, r.title, d.department_name, r.salary, CONCAT(m.first_name, ' ', m.last_name) AS manager_name
+        FROM employee e
+        LEFT JOIN roles r ON e.role_id = r.id
+        LEFT JOIN departments d ON r.department_id = d.id
+        LEFT JOIN employee m ON e.manager_id = m.id;
+        `;
+        connection.query(query, (err, res) => {
+            if (err) throw err;
+            console.table(res);
+            // restart the application
+            start();
+        });
+    }
+
+    function addDepartment() {
+        inquirer
+            .prompt({
+                type: "input",
+                name: "name",
+                message: "Enter the name of the new department:",
+            })
+            .then((answer) => {
+                console.log(answer.name);
+                const query = `INSERT INTO departments (department_name) VALUES ("${answer.name}")`;
+                connection.query(query, (err, res) => {
+                    if (err) throw err;
+                    console.log(`Added department ${answer.name} to the database!`);
+                    // restart the application
+                    start();
+                    console.log(answer.name);
+                });
+            });
+    }
+    
