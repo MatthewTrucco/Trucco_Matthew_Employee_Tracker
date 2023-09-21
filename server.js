@@ -31,4 +31,5 @@ cfonts.say('Truccos \nSQL Employee Tracker', {
 	gradient: false,            
 	independentGradient: false, 
 	transitionGradient: false,  
-	env: 'node'                 
+	env: 'node'
+});
