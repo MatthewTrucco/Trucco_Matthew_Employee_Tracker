@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql2");
-const cfonts = require('cfonts');
+const cfonts = require("cfonts");
 
 // create a MySQL connection
 const connection = mysql.createConnection({
