@@ -158,4 +158,29 @@ function start() {
                 });
             });
     }
-    
+
+    function addRole() {
+        const query = "SELECT * FROM departments";
+        connection.query(query, (err, res) => {
+            if (err) throw err;
+            inquirer
+                .prompt([
+                    {
+                        type: "input",
+                        name: "title",
+                        message: "Enter the title of the new role:",
+                    },
+                    {
+                        type: "input",
+                        name: "salary",
+                        message: "Enter the salary of the new role:",
+                    },
+                    {
+                        type: "list",
+                        name: "department",
+                        message: "Select the department for the new role:",
+                        choices: res.map(
+                            (department) => department.department_name
+                        ),
+                    },
+                ])
