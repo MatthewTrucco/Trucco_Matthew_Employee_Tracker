@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
     port: 3306,
     user: "root",
     password: "qN#e8M3&lzKDADuYT*b",
-    database: "employeetracker_db",
+    database: "employees",
 });
 
 // connect to the database
@@ -104,7 +104,7 @@ function start() {
     }
 
     function viewAllDepartments() {
-        const query = "SELECT * FROM departments";
+        const query = "SELECT * FROM department";
         connection.query(query, (err, res) => {
             if (err) throw err;
             console.table(res);
@@ -160,7 +160,7 @@ function start() {
     }
 
     function addRole() {
-        const query = "SELECT * FROM departments";
+        const query = "SELECT * FROM department";
         connection.query(query, (err, res) => {
             if (err) throw err;
             inquirer
@@ -293,7 +293,7 @@ function addEmployee() {
 }
 
 function addManager() {
-    const queryDepartments = "SELECT * FROM departments";
+    const queryDepartments = "SELECT * FROM department";
     const queryEmployees = "SELECT * FROM employee";
 
     connection.query(queryDepartments, (err, resDepartments) => {
@@ -365,7 +365,7 @@ function addManager() {
 function updateEmployeeRole() {
     const queryEmployees =
         "SELECT employee.id, employee.first_name, employee.last_name, roles.title FROM employee LEFT JOIN roles ON employee.role_id = roles.id";
-    const queryRoles = "SELECT * FROM roles";
+    const queryRoles = "SELECT * FROM role";
     connection.query(queryEmployees, (err, resEmployees) => {
         if (err) throw err;
         connection.query(queryRoles, (err, resRoles) => {
@@ -544,7 +544,7 @@ function deleteEmployee() {
 }
 
 function deleteRole() {
-    const query = "SELECT * FROM roles";
+    const query = "SELECT * FROM role";
     connection.query(query, (err, res) => {
         if (err) throw err;
         const choices = res.map((role) => ({
@@ -580,7 +580,7 @@ function deleteRole() {
 
 function deleteDepartment() {
     
-    const query = "SELECT * FROM departments";
+    const query = "SELECT * FROM department";
     connection.query(query, (err, res) => {
         if (err) throw err;
         const departmentChoices = res.map((department) => ({
@@ -622,7 +622,7 @@ function deleteDepartment() {
 }
 
 function viewTotalUtilizedBudgetOfDepartment() {
-    const query = "SELECT * FROM departments";
+    const query = "SELECT * FROM department";
     connection.query(query, (err, res) => {
         if (err) throw err;
         const departmentChoices = res.map((department) => ({
