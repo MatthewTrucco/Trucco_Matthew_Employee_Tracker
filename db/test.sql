@@ -1,3 +1,3 @@
-select * from department; 
-select * from role; 
-select * from employee;
+select * from departments; 
+select * from roles; 
+select * from employees;

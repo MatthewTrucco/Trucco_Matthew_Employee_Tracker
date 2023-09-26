@@ -3,7 +3,7 @@ CREATE DATABASE employees;
 
 USE employees;
 
-CREATE TABLE department (
+CREATE TABLE departments (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(30) UNIQUE NOT NULL
 );
@@ -17,7 +17,7 @@ CREATE TABLE roles (
   CONSTRAINT fk_department FOREIGN KEY (department_id) REFERENCES department(id) ON DELETE CASCADE
 );
 
-CREATE TABLE employee (
+CREATE TABLE employees (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(30) NOT NULL,
   last_name VARCHAR(30) NOT NULL,
